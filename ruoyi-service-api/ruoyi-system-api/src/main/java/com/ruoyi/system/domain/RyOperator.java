@@ -6,12 +6,12 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 魔蝎认证对象 ry_moxie
+ * 运营商认证对象 ry_operator
  * 
  * @author ruoyi
  * @date 2019-09-06
  */
-public class RyMoxie extends BaseEntity
+public class RyOperator extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 

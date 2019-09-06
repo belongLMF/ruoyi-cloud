@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.RyMoxieMapper">
-
-    <resultMap type="RyMoxie" id="RyMoxieResult">
-        <result property="id" column="id"/>
-        <result property="cId" column="c_id"/>
-        <result property="url" column="url"/>
-        <result property="status" column="status"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.RyTaobaoMapper">
+    
+    <resultMap type="RyTaobao" id="RyTaobaoResult">
+        <result property="id"    column="id"    />
+        <result property="cId"    column="c_id"    />
+        <result property="url"    column="url"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
     </resultMap>
 
-    <sql id="selectRyMoxieVo">
-        select id, c_id, url, status, create_time, update_time from ry_moxie
+    <sql id="selectRyTaobaoVo">
+        select id, c_id, url, status, create_time, update_time from ry_taobao
     </sql>
 
-    <select id="selectRyMoxieList" parameterType="RyMoxie" resultMap="RyMoxieResult">
-        <include refid="selectRyMoxieVo"/>
-        <where>
+    <select id="selectRyTaobaoList" parameterType="RyTaobao" resultMap="RyTaobaoResult">
+        <include refid="selectRyTaobaoVo"/>
+        <where>  
         </where>
     </select>
-
-    <select id="selectRyMoxieById" parameterType="Long" resultMap="RyMoxieResult">
-        <include refid="selectRyMoxieVo"/>
+    
+    <select id="selectRyTaobaoById" parameterType="Long" resultMap="RyTaobaoResult">
+        <include refid="selectRyTaobaoVo"/>
         where id = #{id}
     </select>
-
-    <insert id="insertRyMoxie" parameterType="RyMoxie" useGeneratedKeys="true" keyProperty="id">
-        insert into ry_moxie
+        
+    <insert id="insertRyTaobao" parameterType="RyTaobao" useGeneratedKeys="true" keyProperty="id">
+        insert into ry_taobao
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="cId != null ">c_id,</if>
             <if test="url != null  and url != ''">url,</if>
             <if test="status != null ">status,</if>
             <if test="createTime != null ">create_time,</if>
             <if test="updateTime != null ">update_time,</if>
-        </trim>
+         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="cId != null ">#{cId},</if>
             <if test="url != null  and url != ''">#{url},</if>
             <if test="status != null ">#{status},</if>
             <if test="createTime != null ">#{createTime},</if>
             <if test="updateTime != null ">#{updateTime},</if>
-        </trim>
+         </trim>
     </insert>
 
-    <update id="updateRyMoxie" parameterType="RyMoxie">
-        update ry_moxie
+    <update id="updateRyTaobao" parameterType="RyTaobao">
+        update ry_taobao
         <trim prefix="SET" suffixOverrides=",">
             <if test="cId != null ">c_id = #{cId},</if>
             <if test="url != null  and url != ''">url = #{url},</if>
@@ -58,15 +58,15 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteRyMoxieById" parameterType="Long">
-        delete from ry_moxie where id = #{id}
+    <delete id="deleteRyTaobaoById" parameterType="Long">
+        delete from ry_taobao where id = #{id}
     </delete>
 
-    <delete id="deleteRyMoxieByIds" parameterType="String">
-        delete from ry_moxie where id in
+    <delete id="deleteRyTaobaoByIds" parameterType="String">
+        delete from ry_taobao where id in 
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
-
+    
 </mapper>

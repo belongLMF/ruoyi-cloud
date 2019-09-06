@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.RyMoxieMapper">
-
-    <resultMap type="RyMoxie" id="RyMoxieResult">
-        <result property="id" column="id"/>
-        <result property="cId" column="c_id"/>
-        <result property="url" column="url"/>
-        <result property="status" column="status"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.RyOperatorMapper">
+    
+    <resultMap type="RyOperator" id="RyOperatorResult">
+        <result property="id"    column="id"    />
+        <result property="cId"    column="c_id"    />
+        <result property="url"    column="url"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
     </resultMap>
 
-    <sql id="selectRyMoxieVo">
-        select id, c_id, url, status, create_time, update_time from ry_moxie
+    <sql id="selectRyOperatorVo">
+        select id, c_id, url, status, create_time, update_time from ry_operator
     </sql>
 
-    <select id="selectRyMoxieList" parameterType="RyMoxie" resultMap="RyMoxieResult">
-        <include refid="selectRyMoxieVo"/>
-        <where>
+    <select id="selectRyOperatorList" parameterType="RyOperator" resultMap="RyOperatorResult">
+        <include refid="selectRyOperatorVo"/>
+        <where>  
         </where>
     </select>
-
-    <select id="selectRyMoxieById" parameterType="Long" resultMap="RyMoxieResult">
-        <include refid="selectRyMoxieVo"/>
+    
+    <select id="selectRyOperatorById" parameterType="Long" resultMap="RyOperatorResult">
+        <include refid="selectRyOperatorVo"/>
         where id = #{id}
     </select>
-
-    <insert id="insertRyMoxie" parameterType="RyMoxie" useGeneratedKeys="true" keyProperty="id">
-        insert into ry_moxie
+        
+    <insert id="insertRyOperator" parameterType="RyOperator" useGeneratedKeys="true" keyProperty="id">
+        insert into ry_operator
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="cId != null ">c_id,</if>
             <if test="url != null  and url != ''">url,</if>
             <if test="status != null ">status,</if>
             <if test="createTime != null ">create_time,</if>
             <if test="updateTime != null ">update_time,</if>
-        </trim>
+         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="cId != null ">#{cId},</if>
             <if test="url != null  and url != ''">#{url},</if>
             <if test="status != null ">#{status},</if>
             <if test="createTime != null ">#{createTime},</if>
             <if test="updateTime != null ">#{updateTime},</if>
-        </trim>
+         </trim>
     </insert>
 
-    <update id="updateRyMoxie" parameterType="RyMoxie">
-        update ry_moxie
+    <update id="updateRyOperator" parameterType="RyOperator">
+        update ry_operator
         <trim prefix="SET" suffixOverrides=",">
             <if test="cId != null ">c_id = #{cId},</if>
             <if test="url != null  and url != ''">url = #{url},</if>
@@ -58,15 +58,15 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteRyMoxieById" parameterType="Long">
-        delete from ry_moxie where id = #{id}
+    <delete id="deleteRyOperatorById" parameterType="Long">
+        delete from ry_operator where id = #{id}
     </delete>
 
-    <delete id="deleteRyMoxieByIds" parameterType="String">
-        delete from ry_moxie where id in
+    <delete id="deleteRyOperatorByIds" parameterType="String">
+        delete from ry_operator where id in 
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
-
+    
 </mapper>
