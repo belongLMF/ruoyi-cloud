@@ -56,7 +56,7 @@ public class RyClientController extends BaseController {
      * @return
      */
     @PostMapping("fileList" )
-    public R fileList(@RequestBody Long id) {
+    public R fileList(Long id) {
         return result(RyClientService.selectClientFileList(id));
     }
 
