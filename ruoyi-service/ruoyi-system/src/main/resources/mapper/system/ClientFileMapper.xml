@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ClientFileMapper">
+    
+    <resultMap type="ClientFile" id="ClientFileResult">
+        <result property="id"    column="id"    />
+        <result property="cid"    column="cid"    />
+        <result property="fileName"    column="file_name"    />
+        <result property="filePath"    column="file_path"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="deleteTime"    column="delete_time"    />
+    </resultMap>
+
+    <sql id="selectClientFileVo">
+        select id, cid, file_name, file_path, create_time, update_time, delete_time from client_file
+    </sql>
+
+    <select id="selectClientFileListCid" parameterType="ClientFile" resultMap="ClientFileResult">
+        <include refid="selectClientFileVo"/>
+        where cid = #{cid}
+    </select>
+
+    <select id="selectClientFileList" parameterType="ClientFile" resultMap="ClientFileResult">
+        <include refid="selectClientFileVo"/>
+        <where>
+            <if test="fileName != null  and fileName != ''"> and file_name like concat('%', #{fileName}, '%')</if>
+            <if test="filePath != null  and filePath != ''"> and file_path like concat('%', #{filePath}, '%')</if>
+            <if test="cid != null  and cid != ''"> and cid = #{cid}</if>
+        </where>
+    </select>
+    
+    <select id="selectClientFileById" parameterType="Long" resultMap="ClientFileResult">
+        <include refid="selectClientFileVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertClientFile" parameterType="ClientFile" useGeneratedKeys="true" keyProperty="id">
+        insert into client_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">cid,</if>
+            <if test="fileName != null  and fileName != ''">file_name,</if>
+            <if test="filePath != null  and filePath != ''">file_path,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="deleteTime != null ">delete_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">#{cid},</if>
+            <if test="fileName != null  and fileName != ''">#{fileName},</if>
+            <if test="filePath != null  and filePath != ''">#{filePath},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="deleteTime != null ">#{deleteTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClientFile" parameterType="ClientFile">
+        update client_file
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cid != null ">cid = #{cid},</if>
+            <if test="fileName != null  and fileName != ''">file_name = #{fileName},</if>
+            <if test="filePath != null  and filePath != ''">file_path = #{filePath},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="deleteTime != null ">delete_time = #{deleteTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClientFileById" parameterType="Long">
+        delete from client_file where id = #{id}
+    </delete>
+
+    <delete id="deleteClientFileByIds" parameterType="String">
+        delete from client_file where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

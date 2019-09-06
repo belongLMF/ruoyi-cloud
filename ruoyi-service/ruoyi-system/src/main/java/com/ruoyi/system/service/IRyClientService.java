@@ -1,5 +1,6 @@
 package com.ruoyi.system.service;
 
+import com.ruoyi.system.domain.ClientFile;
 import com.ruoyi.system.domain.RyClient;
 
 import java.util.List;
@@ -26,6 +27,14 @@ public interface IRyClientService {
      * @return 客户集合
      */
     public List<RyClient> selectRyClientList(RyClient ryClient);
+
+    /**
+     * 查询客户列表
+     *
+     * @param ryClient 客户
+     * @return 客户集合
+     */
+    public List<ClientFile> selectClientFileList(Long id);
 
     /**
      * 新增客户

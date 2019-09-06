@@ -23,7 +23,7 @@ import com.ruoyi.system.service.IRyClientService;
  * @date 2019-09-04
  */
 @RestController
-@RequestMapping("ryClient")
+@RequestMapping("ryClient" )
 public class RyClientController extends BaseController {
 
     @Autowired
@@ -34,25 +34,36 @@ public class RyClientController extends BaseController {
      *
      * @return
      */
-    @GetMapping("get/{id}")
-    public RyClient get(@PathVariable("id") Long id) {
+    @GetMapping("get/{id}" )
+    public RyClient get(@PathVariable("id" ) Long id) {
         return RyClientService.selectRyClientById(id);
     }
 
     /**
      * 查询客户列表
      */
-    @HasPermissions("system:client:list")
-    @GetMapping("list")
+    @HasPermissions("system:client:list" )
+    @GetMapping("list" )
     public R list(RyClient ryClient) {
         startPage();
         return result(RyClientService.selectRyClientList(ryClient));
     }
 
     /**
+     * 查询客户的影像资料
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("fileList" )
+    public R fileList(@RequestBody Long id) {
+        return result(RyClientService.selectClientFileList(id));
+    }
+
+    /**
      * 新增保存客户
      */
-    @PostMapping("save")
+    @PostMapping("save" )
     public R addSave(@RequestBody RyClient ryClient) {
         System.out.println(ryClient.toString());
         return toAjax(RyClientService.insertRyClient(ryClient));
@@ -61,8 +72,8 @@ public class RyClientController extends BaseController {
     /**
      * 修改保存客户
      */
-    @HasPermissions("system:client:edit")
-    @PostMapping("update")
+    @HasPermissions("system:client:edit" )
+    @PostMapping("update" )
     @OperLog(title = "客户管理", businessType = BusinessType.UPDATE)
     public R editSave(@RequestBody RyClient ryClient) {
         return toAjax(RyClientService.updateRyClient(ryClient));
@@ -71,7 +82,7 @@ public class RyClientController extends BaseController {
     /**
      * 删除${tableComment}
      */
-    @PostMapping("remove")
+    @PostMapping("remove" )
     @OperLog(title = "客户管理", businessType = BusinessType.DELETE)
     public R remove(String ids) {
         return toAjax(RyClientService.deleteRyClientByIds(ids));
