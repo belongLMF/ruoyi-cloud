@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.controller.BaseController;
-import ${packageName}.domain.${className};
-import ${packageName}.service.I${className}Service;
+import ${packageName}.domain.${ClassName};
+import ${packageName}.service.I${ClassName}Service;
 
 /**
  * ${functionName} 提供者
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
@@ -23,20 +23,20 @@ import ${packageName}.service.I${className}Service;
 @RequestMapping("${businessName}")
 public class ${ClassName}Controller extends BaseController
 {
-	
+
 	@Autowired
-	private I${ClassName}Service ${className}Service;
-	
+	private I${ClassName}Service ${ClassName}Service;
+
 	/**
 	 * 查询${tableComment}
 	 */
 	@GetMapping("get/{${pkColumn.javaField}}")
 	public ${className} get(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
 	{
-		return ${className}Service.select${ClassName}ById(${pkColumn.javaField});
-		
+		return ${ClassName}Service.select${ClassName}ById(${pkColumn.javaField});
+
 	}
-	
+
 	/**
 	 * 查询${functionName}列表
 	 */
@@ -44,17 +44,17 @@ public class ${ClassName}Controller extends BaseController
 	public R list(${ClassName} ${className})
 	{
 		startPage();
-        return result(${className}Service.select${ClassName}List(${className}));
+		return result(${ClassName}Service.select${ClassName}List(${className}));
 	}
-	
-	
+
+
 	/**
 	 * 新增保存${functionName}
 	 */
 	@PostMapping("save")
 	public R addSave(@RequestBody ${ClassName} ${className})
-	{		
-		return toAjax(${className}Service.insert${ClassName}(${className}));
+	{
+		return toAjax(${ClassName}Service.insert${ClassName}(${className}));
 	}
 
 	/**
@@ -62,17 +62,17 @@ public class ${ClassName}Controller extends BaseController
 	 */
 	@PostMapping("update")
 	public R editSave(@RequestBody ${ClassName} ${className})
-	{		
-		return toAjax(${className}Service.update${ClassName}(${className}));
+	{
+		return toAjax(${ClassName}Service.update${ClassName}(${className}));
 	}
-	
+
 	/**
 	 * 删除${tableComment}
 	 */
 	@PostMapping("remove")
 	public R remove(String ids)
-	{		
-		return toAjax(${className}Service.delete${className}ByIds(ids));
+	{
+		return toAjax(${ClassName}Service.delete${ClassName}ByIds(ids));
 	}
-	
+
 }
