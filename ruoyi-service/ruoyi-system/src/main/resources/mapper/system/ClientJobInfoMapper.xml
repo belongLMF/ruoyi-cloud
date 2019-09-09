@@ -37,6 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectClientJobInfoVo"/>
         where id = #{id}
     </select>
+
+    <select id="selectClientJobInfoByCid" parameterType="Long" resultMap="ClientJobInfoResult">
+        <include refid="selectClientJobInfoVo"/>
+        where cid = #{cid}
+    </select>
         
     <insert id="insertClientJobInfo" parameterType="ClientJobInfo" useGeneratedKeys="true" keyProperty="id">
         insert into client_job_info

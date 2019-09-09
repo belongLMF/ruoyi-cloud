@@ -16,7 +16,7 @@ import com.ruoyi.common.core.text.Convert;
  * @date 2019-09-09
  */
 @Service
-public class ClientInfoServiceImpl implements IClientInfoService 
+public class ClientInfoServiceImpl implements IClientInfoService
 {
     @Autowired
     private ClientInfoMapper clientInfoMapper;
@@ -42,9 +42,6 @@ public class ClientInfoServiceImpl implements IClientInfoService
     @Override
     public ClientInfo selectClientInfoByCid(Long cid)
     {
-        System.out.println("测试");
-        System.out.println(cid);
-        System.out.println("测试end");
         return clientInfoMapper.selectClientInfoByCid(cid);
     }
 

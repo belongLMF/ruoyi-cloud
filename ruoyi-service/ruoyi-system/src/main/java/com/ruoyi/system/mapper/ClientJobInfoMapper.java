@@ -20,6 +20,14 @@ public interface ClientJobInfoMapper
     public ClientJobInfo selectClientJobInfoById(Long id);
 
     /**
+     * 查询客户工作信息
+     *
+     * @param cid 客户ID
+     * @return 客户工作信息
+     */
+    public ClientJobInfo selectClientJobInfoByCid(Long cid);
+
+    /**
      * 查询客户工作信息列表
      * 
      * @param clientJobInfo 客户工作信息

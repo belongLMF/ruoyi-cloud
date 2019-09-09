@@ -16,7 +16,7 @@ import com.ruoyi.common.core.text.Convert;
  * @date 2019-09-09
  */
 @Service
-public class ClientJobInfoServiceImpl implements IClientJobInfoService 
+public class ClientJobInfoServiceImpl implements IClientJobInfoService
 {
     @Autowired
     private ClientJobInfoMapper clientJobInfoMapper;
@@ -31,6 +31,18 @@ public class ClientJobInfoServiceImpl implements IClientJobInfoService
     public ClientJobInfo selectClientJobInfoById(Long id)
     {
         return clientJobInfoMapper.selectClientJobInfoById(id);
+    }
+
+    /**
+     * 查询客户工作信息
+     *
+     * @param cid 客户ID
+     * @return 客户工作信息
+     */
+    @Override
+    public ClientJobInfo selectClientJobInfoByCid(Long cid)
+    {
+        return clientJobInfoMapper.selectClientJobInfoByCid(cid);
     }
 
     /**
