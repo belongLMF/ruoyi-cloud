@@ -16,10 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="addType"    column="add_type"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateTime"    column="update_time"    />
+        <result property="deleteTime"    column="delete_time"    />
     </resultMap>
 
     <sql id="selectClientMailListVo">
-        select id, cid, apply_code, contact_name, contact_relation, contact_phone, contact_location, contact_address, add_type, create_time, update_time from client_mail_list
+        select id, cid, apply_code, contact_name, contact_relation, contact_phone, contact_location, contact_address, add_type, create_time, update_time, delete_time from client_mail_list
     </sql>
 
     <select id="selectClientMailListList" parameterType="ClientMailList" resultMap="ClientMailListResult">
@@ -47,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="addType != null ">add_type,</if>
             <if test="createTime != null ">create_time,</if>
             <if test="updateTime != null ">update_time,</if>
+            <if test="deleteTime != null ">delete_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="cid != null ">#{cid},</if>
@@ -59,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="addType != null ">#{addType},</if>
             <if test="createTime != null ">#{createTime},</if>
             <if test="updateTime != null ">#{updateTime},</if>
+            <if test="deleteTime != null ">#{deleteTime},</if>
          </trim>
     </insert>
 
@@ -75,6 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="addType != null ">add_type = #{addType},</if>
             <if test="createTime != null ">create_time = #{createTime},</if>
             <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="deleteTime != null ">delete_time = #{deleteTime},</if>
         </trim>
         where id = #{id}
     </update>

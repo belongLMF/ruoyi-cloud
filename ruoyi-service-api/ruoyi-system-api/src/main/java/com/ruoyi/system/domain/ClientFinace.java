@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import java.util.Date;
 
 /**
  * 客户财务对象 client_finace
@@ -49,6 +50,10 @@ public class ClientFinace extends BaseEntity
     /** 其他资产 */
     @Excel(name = "其他资产")
     private String otherAssets;
+
+    /** $column.columnComment */
+    @Excel(name = "其他资产", width = 30, dateFormat = "yyyy-MM-dd")
+    private Date deleteTime;
 
     public void setId(Long id) 
     {
@@ -131,6 +136,15 @@ public class ClientFinace extends BaseEntity
     {
         return otherAssets;
     }
+    public void setDeleteTime(Date deleteTime) 
+    {
+        this.deleteTime = deleteTime;
+    }
+
+    public Date getDeleteTime() 
+    {
+        return deleteTime;
+    }
 
     @Override
     public String toString() {
@@ -146,6 +160,7 @@ public class ClientFinace extends BaseEntity
             .append("otherAssets", getOtherAssets())
             .append("createTime", getCreateTime())
             .append("updateTime", getUpdateTime())
+            .append("deleteTime", getDeleteTime())
             .toString();
     }
 }

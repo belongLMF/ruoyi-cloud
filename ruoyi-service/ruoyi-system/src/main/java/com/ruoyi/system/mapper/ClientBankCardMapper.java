@@ -28,13 +28,6 @@ public interface ClientBankCardMapper
     public List<ClientBankCard> selectClientBankCardList(ClientBankCard clientBankCard);
 
     /**
-     * 查询客户银行卡
-     * @param clientBankCard
-     * @return
-     */
-    public List<ClientBankCard> selectClientBankCardData(ClientBankCard clientBankCard);
-
-    /**
      * 新增客户银行卡
      * 
      * @param clientBankCard 客户银行卡

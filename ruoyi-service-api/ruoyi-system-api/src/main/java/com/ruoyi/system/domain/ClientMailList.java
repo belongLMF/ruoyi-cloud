@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import java.util.Date;
 
 /**
  * 客户通讯录对象 client_mail_list
@@ -49,6 +50,10 @@ public class ClientMailList extends BaseEntity
     /** 添加类型：1app添加 2客户手动添加3后台添加 */
     @Excel(name = "添加类型：1app添加 2客户手动添加3后台添加")
     private Integer addType;
+
+    /** $column.columnComment */
+    @Excel(name = "添加类型：1app添加 2客户手动添加3后台添加", width = 30, dateFormat = "yyyy-MM-dd")
+    private Date deleteTime;
 
     public void setId(Long id) 
     {
@@ -131,6 +136,15 @@ public class ClientMailList extends BaseEntity
     {
         return addType;
     }
+    public void setDeleteTime(Date deleteTime) 
+    {
+        this.deleteTime = deleteTime;
+    }
+
+    public Date getDeleteTime() 
+    {
+        return deleteTime;
+    }
 
     @Override
     public String toString() {
@@ -146,6 +160,7 @@ public class ClientMailList extends BaseEntity
             .append("addType", getAddType())
             .append("createTime", getCreateTime())
             .append("updateTime", getUpdateTime())
+            .append("deleteTime", getDeleteTime())
             .toString();
     }
 }

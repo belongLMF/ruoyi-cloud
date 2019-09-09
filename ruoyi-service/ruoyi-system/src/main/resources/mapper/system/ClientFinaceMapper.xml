@@ -16,10 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="otherAssets"    column="other_assets"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateTime"    column="update_time"    />
+        <result property="deleteTime"    column="delete_time"    />
     </resultMap>
 
     <sql id="selectClientFinaceVo">
-        select id, cid, income, income_info, expenditure, expenditure_info, shares_info, shares_money, other_assets, create_time, update_time from client_finace
+        select id, cid, income, income_info, expenditure, expenditure_info, shares_info, shares_money, other_assets, create_time, update_time, delete_time from client_finace
     </sql>
 
     <select id="selectClientFinaceList" parameterType="ClientFinace" resultMap="ClientFinaceResult">
@@ -47,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="otherAssets != null  and otherAssets != ''">other_assets,</if>
             <if test="createTime != null ">create_time,</if>
             <if test="updateTime != null ">update_time,</if>
+            <if test="deleteTime != null ">delete_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null ">#{id},</if>
@@ -60,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="otherAssets != null  and otherAssets != ''">#{otherAssets},</if>
             <if test="createTime != null ">#{createTime},</if>
             <if test="updateTime != null ">#{updateTime},</if>
+            <if test="deleteTime != null ">#{deleteTime},</if>
          </trim>
     </insert>
 
@@ -76,6 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="otherAssets != null  and otherAssets != ''">other_assets = #{otherAssets},</if>
             <if test="createTime != null ">create_time = #{createTime},</if>
             <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="deleteTime != null ">delete_time = #{deleteTime},</if>
         </trim>
         where id = #{id}
     </update>

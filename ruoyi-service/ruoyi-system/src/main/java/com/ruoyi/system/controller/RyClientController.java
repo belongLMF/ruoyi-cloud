@@ -112,15 +112,6 @@ public class RyClientController extends BaseController {
     }
 
     /**
-     * 查询客户银行卡
-     */
-    @GetMapping("getOneBankData")
-    public R getOneBankData(ClientBankCard clientBankCard)
-    {
-        return result(ClientBankCardService.selectClientBankCardData(clientBankCard));
-    }
-
-    /**
      * 新增保存客户银行卡
      */
     @PostMapping("bankAddSave")

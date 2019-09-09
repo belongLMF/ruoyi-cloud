@@ -46,17 +46,6 @@ public class ClientBankCardServiceImpl implements IClientBankCardService
     }
 
     /**
-     * 查询客户银行卡
-     * @param clientBankCard
-     * @return
-     */
-    @Override
-    public List<ClientBankCard> selectClientBankCardData(ClientBankCard clientBankCard)
-    {
-        return clientBankCardMapper.selectClientBankCardData(clientBankCard);
-    }
-
-    /**
      * 新增客户银行卡
      * 
      * @param clientBankCard 客户银行卡
