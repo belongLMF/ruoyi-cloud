@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ClientFinaceMapper">
+    
+    <resultMap type="ClientFinace" id="ClientFinaceResult">
+        <result property="id"    column="id"    />
+        <result property="cid"    column="cid"    />
+        <result property="income"    column="income"    />
+        <result property="incomeInfo"    column="income_info"    />
+        <result property="expenditure"    column="expenditure"    />
+        <result property="expenditureInfo"    column="expenditure_info"    />
+        <result property="sharesInfo"    column="shares_info"    />
+        <result property="sharesMoney"    column="shares_money"    />
+        <result property="otherAssets"    column="other_assets"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectClientFinaceVo">
+        select id, cid, income, income_info, expenditure, expenditure_info, shares_info, shares_money, other_assets, create_time, update_time from client_finace
+    </sql>
+
+    <select id="selectClientFinaceList" parameterType="ClientFinace" resultMap="ClientFinaceResult">
+        <include refid="selectClientFinaceVo"/>
+        <where>  
+        </where>
+    </select>
+    
+    <select id="selectClientFinaceById" parameterType="Long" resultMap="ClientFinaceResult">
+        <include refid="selectClientFinaceVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertClientFinace" parameterType="ClientFinace">
+        insert into client_finace
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="cid != null ">cid,</if>
+            <if test="income != null ">income,</if>
+            <if test="incomeInfo != null  and incomeInfo != ''">income_info,</if>
+            <if test="expenditure != null ">expenditure,</if>
+            <if test="expenditureInfo != null  and expenditureInfo != ''">expenditure_info,</if>
+            <if test="sharesInfo != null  and sharesInfo != ''">shares_info,</if>
+            <if test="sharesMoney != null ">shares_money,</if>
+            <if test="otherAssets != null  and otherAssets != ''">other_assets,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="cid != null ">#{cid},</if>
+            <if test="income != null ">#{income},</if>
+            <if test="incomeInfo != null  and incomeInfo != ''">#{incomeInfo},</if>
+            <if test="expenditure != null ">#{expenditure},</if>
+            <if test="expenditureInfo != null  and expenditureInfo != ''">#{expenditureInfo},</if>
+            <if test="sharesInfo != null  and sharesInfo != ''">#{sharesInfo},</if>
+            <if test="sharesMoney != null ">#{sharesMoney},</if>
+            <if test="otherAssets != null  and otherAssets != ''">#{otherAssets},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClientFinace" parameterType="ClientFinace">
+        update client_finace
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cid != null ">cid = #{cid},</if>
+            <if test="income != null ">income = #{income},</if>
+            <if test="incomeInfo != null  and incomeInfo != ''">income_info = #{incomeInfo},</if>
+            <if test="expenditure != null ">expenditure = #{expenditure},</if>
+            <if test="expenditureInfo != null  and expenditureInfo != ''">expenditure_info = #{expenditureInfo},</if>
+            <if test="sharesInfo != null  and sharesInfo != ''">shares_info = #{sharesInfo},</if>
+            <if test="sharesMoney != null ">shares_money = #{sharesMoney},</if>
+            <if test="otherAssets != null  and otherAssets != ''">other_assets = #{otherAssets},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClientFinaceById" parameterType="Long">
+        delete from client_finace where id = #{id}
+    </delete>
+
+    <delete id="deleteClientFinaceByIds" parameterType="String">
+        delete from client_finace where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

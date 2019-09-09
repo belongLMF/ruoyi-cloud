@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ClientMailListMapper">
+    
+    <resultMap type="ClientMailList" id="ClientMailListResult">
+        <result property="id"    column="id"    />
+        <result property="cid"    column="cid"    />
+        <result property="applyCode"    column="apply_code"    />
+        <result property="contactName"    column="contact_name"    />
+        <result property="contactRelation"    column="contact_relation"    />
+        <result property="contactPhone"    column="contact_phone"    />
+        <result property="contactLocation"    column="contact_location"    />
+        <result property="contactAddress"    column="contact_address"    />
+        <result property="addType"    column="add_type"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectClientMailListVo">
+        select id, cid, apply_code, contact_name, contact_relation, contact_phone, contact_location, contact_address, add_type, create_time, update_time from client_mail_list
+    </sql>
+
+    <select id="selectClientMailListList" parameterType="ClientMailList" resultMap="ClientMailListResult">
+        <include refid="selectClientMailListVo"/>
+        <where>  
+            <if test="contactName != null  and contactName != ''"> and contact_name like concat('%', #{contactName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectClientMailListById" parameterType="Long" resultMap="ClientMailListResult">
+        <include refid="selectClientMailListVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertClientMailList" parameterType="ClientMailList" useGeneratedKeys="true" keyProperty="id">
+        insert into client_mail_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">cid,</if>
+            <if test="applyCode != null  and applyCode != ''">apply_code,</if>
+            <if test="contactName != null  and contactName != ''">contact_name,</if>
+            <if test="contactRelation != null ">contact_relation,</if>
+            <if test="contactPhone != null  and contactPhone != ''">contact_phone,</if>
+            <if test="contactLocation != null  and contactLocation != ''">contact_location,</if>
+            <if test="contactAddress != null  and contactAddress != ''">contact_address,</if>
+            <if test="addType != null ">add_type,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">#{cid},</if>
+            <if test="applyCode != null  and applyCode != ''">#{applyCode},</if>
+            <if test="contactName != null  and contactName != ''">#{contactName},</if>
+            <if test="contactRelation != null ">#{contactRelation},</if>
+            <if test="contactPhone != null  and contactPhone != ''">#{contactPhone},</if>
+            <if test="contactLocation != null  and contactLocation != ''">#{contactLocation},</if>
+            <if test="contactAddress != null  and contactAddress != ''">#{contactAddress},</if>
+            <if test="addType != null ">#{addType},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClientMailList" parameterType="ClientMailList">
+        update client_mail_list
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cid != null ">cid = #{cid},</if>
+            <if test="applyCode != null  and applyCode != ''">apply_code = #{applyCode},</if>
+            <if test="contactName != null  and contactName != ''">contact_name = #{contactName},</if>
+            <if test="contactRelation != null ">contact_relation = #{contactRelation},</if>
+            <if test="contactPhone != null  and contactPhone != ''">contact_phone = #{contactPhone},</if>
+            <if test="contactLocation != null  and contactLocation != ''">contact_location = #{contactLocation},</if>
+            <if test="contactAddress != null  and contactAddress != ''">contact_address = #{contactAddress},</if>
+            <if test="addType != null ">add_type = #{addType},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClientMailListById" parameterType="Long">
+        delete from client_mail_list where id = #{id}
+    </delete>
+
+    <delete id="deleteClientMailListByIds" parameterType="String">
+        delete from client_mail_list where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

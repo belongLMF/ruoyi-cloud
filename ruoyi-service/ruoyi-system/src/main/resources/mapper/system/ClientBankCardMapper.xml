@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ClientBankCardMapper">
+    
+    <resultMap type="ClientBankCard" id="ClientBankCardResult">
+        <result property="id"    column="id"    />
+        <result property="cid"    column="cid"    />
+        <result property="cardNum"    column="card_num"    />
+        <result property="bankType"    column="bank_type"    />
+        <result property="cardType"    column="card_type"    />
+        <result property="bankCd"    column="bank_cd"    />
+        <result property="bankName"    column="bank_name"    />
+        <result property="ownerName"    column="owner_name"    />
+        <result property="bankName2"    column="bank_name2"    />
+        <result property="bankAddress"    column="bank_address"    />
+        <result property="cityno"    column="cityno"    />
+        <result property="bankImgUrl"    column="bank_img_url"    />
+        <result property="reservedPhone"    column="reserved_phone"    />
+        <result property="cgStatus"    column="cg_status"    />
+        <result property="defaultStatus"    column="default_status"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="status"    column="status"    />
+        <result property="operationIp"    column="operation_ip"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="firstProjectId"    column="first_project_id"    />
+    </resultMap>
+
+    <sql id="selectClientBankCardVo">
+        select id, cid, card_num, bank_type, card_type, bank_cd, bank_name, owner_name, bank_name2, bank_address, cityno, bank_img_url, reserved_phone, cg_status, default_status, project_id, status, operation_ip, create_time, update_time, first_project_id from client_bank_card
+    </sql>
+
+    <select id="selectClientBankCardData" parameterType="ClientBankCard" resultMap="ClientBankCardResult">
+        <include refid="selectClientBankCardVo"/>
+        <where>
+            and id = {id}
+            <if test="cid != null  and cid != ''"> and cid = cid</if>
+            <if test="bankName != null  and bankName != ''"> and bank_name like concat('%', #{bankName}, '%')</if>
+            <if test="ownerName != null  and ownerName != ''"> and owner_name like concat('%', #{ownerName}, '%')</if>
+        </where>
+    </select>
+
+
+    
+    <select id="selectClientBankCardById" parameterType="Long" resultMap="ClientBankCardResult">
+        <include refid="selectClientBankCardVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertClientBankCard" parameterType="ClientBankCard" useGeneratedKeys="true" keyProperty="id">
+        insert into client_bank_card
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">cid,</if>
+            <if test="cardNum != null  and cardNum != ''">card_num,</if>
+            <if test="bankType != null  and bankType != ''">bank_type,</if>
+            <if test="cardType != null  and cardType != ''">card_type,</if>
+            <if test="bankCd != null  and bankCd != ''">bank_cd,</if>
+            <if test="bankName != null  and bankName != ''">bank_name,</if>
+            <if test="ownerName != null  and ownerName != ''">owner_name,</if>
+            <if test="bankName2 != null  and bankName2 != ''">bank_name2,</if>
+            <if test="bankAddress != null  and bankAddress != ''">bank_address,</if>
+            <if test="cityno != null  and cityno != ''">cityno,</if>
+            <if test="bankImgUrl != null  and bankImgUrl != ''">bank_img_url,</if>
+            <if test="reservedPhone != null  and reservedPhone != ''">reserved_phone,</if>
+            <if test="cgStatus != null ">cg_status,</if>
+            <if test="defaultStatus != null ">default_status,</if>
+            <if test="projectId != null  and projectId != ''">project_id,</if>
+            <if test="status != null ">status,</if>
+            <if test="operationIp != null  and operationIp != ''">operation_ip,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="firstProjectId != null  and firstProjectId != ''">first_project_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">#{cid},</if>
+            <if test="cardNum != null  and cardNum != ''">#{cardNum},</if>
+            <if test="bankType != null  and bankType != ''">#{bankType},</if>
+            <if test="cardType != null  and cardType != ''">#{cardType},</if>
+            <if test="bankCd != null  and bankCd != ''">#{bankCd},</if>
+            <if test="bankName != null  and bankName != ''">#{bankName},</if>
+            <if test="ownerName != null  and ownerName != ''">#{ownerName},</if>
+            <if test="bankName2 != null  and bankName2 != ''">#{bankName2},</if>
+            <if test="bankAddress != null  and bankAddress != ''">#{bankAddress},</if>
+            <if test="cityno != null  and cityno != ''">#{cityno},</if>
+            <if test="bankImgUrl != null  and bankImgUrl != ''">#{bankImgUrl},</if>
+            <if test="reservedPhone != null  and reservedPhone != ''">#{reservedPhone},</if>
+            <if test="cgStatus != null ">#{cgStatus},</if>
+            <if test="defaultStatus != null ">#{defaultStatus},</if>
+            <if test="projectId != null  and projectId != ''">#{projectId},</if>
+            <if test="status != null ">#{status},</if>
+            <if test="operationIp != null  and operationIp != ''">#{operationIp},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="firstProjectId != null  and firstProjectId != ''">#{firstProjectId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClientBankCard" parameterType="ClientBankCard">
+        update client_bank_card
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cid != null ">cid = #{cid},</if>
+            <if test="cardNum != null  and cardNum != ''">card_num = #{cardNum},</if>
+            <if test="bankType != null  and bankType != ''">bank_type = #{bankType},</if>
+            <if test="cardType != null  and cardType != ''">card_type = #{cardType},</if>
+            <if test="bankCd != null  and bankCd != ''">bank_cd = #{bankCd},</if>
+            <if test="bankName != null  and bankName != ''">bank_name = #{bankName},</if>
+            <if test="ownerName != null  and ownerName != ''">owner_name = #{ownerName},</if>
+            <if test="bankName2 != null  and bankName2 != ''">bank_name2 = #{bankName2},</if>
+            <if test="bankAddress != null  and bankAddress != ''">bank_address = #{bankAddress},</if>
+            <if test="cityno != null  and cityno != ''">cityno = #{cityno},</if>
+            <if test="bankImgUrl != null  and bankImgUrl != ''">bank_img_url = #{bankImgUrl},</if>
+            <if test="reservedPhone != null  and reservedPhone != ''">reserved_phone = #{reservedPhone},</if>
+            <if test="cgStatus != null ">cg_status = #{cgStatus},</if>
+            <if test="defaultStatus != null ">default_status = #{defaultStatus},</if>
+            <if test="projectId != null  and projectId != ''">project_id = #{projectId},</if>
+            <if test="status != null ">status = #{status},</if>
+            <if test="operationIp != null  and operationIp != ''">operation_ip = #{operationIp},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="firstProjectId != null  and firstProjectId != ''">first_project_id = #{firstProjectId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClientBankCardById" parameterType="Long">
+        delete from client_bank_card where id = #{id}
+    </delete>
+
+    <delete id="deleteClientBankCardByIds" parameterType="String">
+        delete from client_bank_card where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

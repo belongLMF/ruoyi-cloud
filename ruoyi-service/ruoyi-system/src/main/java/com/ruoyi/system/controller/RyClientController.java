@@ -15,6 +15,12 @@ import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.system.domain.RyClient;
 import com.ruoyi.system.service.IRyClientService;
+import com.ruoyi.system.domain.ClientBankCard;
+import com.ruoyi.system.service.IClientBankCardService;
+import com.ruoyi.system.domain.ClientMailList;
+import com.ruoyi.system.service.IClientMailListService;
+import com.ruoyi.system.domain.ClientFinace;
+import com.ruoyi.system.service.IClientFinaceService;
 
 /**
  * 客户 提供者
@@ -28,6 +34,12 @@ public class RyClientController extends BaseController {
 
     @Autowired
     private IRyClientService RyClientService;
+    @Autowired
+    private IClientBankCardService ClientBankCardService;
+    @Autowired
+    private IClientMailListService ClientMailListService;
+    @Autowired
+    private IClientFinaceService ClientFinaceService;
 
     /**
      * 查询${tableComment}
@@ -86,5 +98,121 @@ public class RyClientController extends BaseController {
     @OperLog(title = "客户管理", businessType = BusinessType.DELETE)
     public R remove(String ids) {
         return toAjax(RyClientService.deleteRyClientByIds(ids));
+    }
+
+    /******************(银行卡相关)********/
+    /**
+     * 查询客户银行卡列表
+     */
+    @GetMapping("bankList")
+    public R bankList(ClientBankCard clientBankCard)
+    {
+        startPage();
+        return result(ClientBankCardService.selectClientBankCardList(clientBankCard));
+    }
+
+    /**
+     * 查询客户银行卡
+     */
+    @GetMapping("getOneBankData")
+    public R getOneBankData(ClientBankCard clientBankCard)
+    {
+        return result(ClientBankCardService.selectClientBankCardData(clientBankCard));
+    }
+
+    /**
+     * 新增保存客户银行卡
+     */
+    @PostMapping("bankAddSave")
+    public R bankAddSave(@RequestBody ClientBankCard clientBankCard)
+    {
+        return toAjax(ClientBankCardService.insertClientBankCard(clientBankCard));
+    }
+
+    /**
+     * 修改保存客户银行卡
+     */
+    @PostMapping("bankEditSave")
+    public R bankEditSave(@RequestBody ClientBankCard clientBankCard)
+    {
+        return toAjax(ClientBankCardService.updateClientBankCard(clientBankCard));
+    }
+
+    /****************通讯录**************/
+    /**
+     * 查询客户通讯录列表
+     */
+    @GetMapping("mailList")
+    public R mailList(ClientMailList clientMailList)
+    {
+        startPage();
+        return result(ClientMailListService.selectClientMailListList(clientMailList));
+    }
+
+
+    /**
+     * 新增保存客户通讯录
+     */
+    @PostMapping("mailAddSave")
+    public R mailAddSave(@RequestBody ClientMailList clientMailList)
+    {
+        return toAjax(ClientMailListService.insertClientMailList(clientMailList));
+    }
+
+    /**
+     * 修改保存客户通讯录
+     */
+    @PostMapping("mailEditSave")
+    public R mailEditSave(@RequestBody ClientMailList clientMailList)
+    {
+        return toAjax(ClientMailListService.updateClientMailList(clientMailList));
+    }
+
+    /**
+     * 删除${tableComment}
+     */
+    @PostMapping("mailRemove")
+    public R mailRemove(String ids)
+    {
+        return toAjax(ClientMailListService.deleteClientMailListByIds(ids));
+    }
+
+    /*****************财务***********/
+    /**
+     * 查询客户财务列表
+     */
+    @GetMapping("finaceList")
+    public R finaceList(ClientFinace clientFinace)
+    {
+        startPage();
+        return result(ClientFinaceService.selectClientFinaceList(clientFinace));
+    }
+
+
+    /**
+     * 新增保存客户财务
+     */
+    @PostMapping("finaceAddSave")
+    public R finaceAddSave(@RequestBody ClientFinace clientFinace)
+    {
+        return toAjax(ClientFinaceService.insertClientFinace(clientFinace));
+    }
+
+    /**
+     * 修改保存客户财务
+     */
+    @PostMapping("finaceEditSave")
+    public R finaceEditSave(@RequestBody ClientFinace clientFinace)
+    {
+        return toAjax(ClientFinaceService.updateClientFinace(clientFinace));
+    }
+
+    /**
+     * 删除${tableComment}
+     */
+    @PostMapping("finaceRemove")
+    public R finaceRemove(String ids)
+    {
+        return toAjax(ClientFinaceService.deleteClientFinaceByIds(ids));
     }
 }
