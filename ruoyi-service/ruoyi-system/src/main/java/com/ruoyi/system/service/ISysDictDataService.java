@@ -1,6 +1,8 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.system.domain.SysDictData;
 
 /**
@@ -74,4 +76,12 @@ public interface ISysDictDataService
      * @return 结果
      */
     public int updateDictData(SysDictData dictData);
+
+    /**
+     * 测试
+     *
+     * @param dictType
+     * @return
+     */
+    public R typeList(String dictType);
 }
