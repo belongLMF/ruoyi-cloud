@@ -29,6 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             and cid = #{cid}
         </where>
     </select>
+
+    <select id="selectClientFinaceData" parameterType="ClientFinace" resultMap="ClientFinaceResult">
+
+        select id, cid, income, income_info, expenditure, expenditure_info, shares_info, shares_money, other_assets, create_time, update_time, delete_time from client_finace where cid = #{cid} limit 1
+
+    </select>
     
     <select id="selectClientFinaceById" parameterType="Long" resultMap="ClientFinaceResult">
         <include refid="selectClientFinaceVo"/>

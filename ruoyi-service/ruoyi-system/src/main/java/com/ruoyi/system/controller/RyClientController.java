@@ -179,6 +179,18 @@ public class RyClientController extends BaseController {
         return result(ClientFinaceService.selectClientFinaceList(clientFinace));
     }
 
+    /**
+     * 查询客户财务单条
+     * @param clientFinace
+     * @return
+     */
+    @GetMapping("getFinaceData")
+    public R getFinaceData(ClientFinace clientFinace)
+    {
+        startPage();
+        return result(ClientFinaceService.selectClientFinaceData(clientFinace));
+    }
+
 
     /**
      * 新增保存客户财务

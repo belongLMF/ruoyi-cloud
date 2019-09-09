@@ -46,6 +46,18 @@ public class ClientFinaceServiceImpl implements IClientFinaceService
     }
 
     /**
+     * 查询客户财务单条
+     *
+     * @param clientFinace
+     * @return
+     */
+    @Override
+    public List<ClientFinace> selectClientFinaceData(ClientFinace clientFinace)
+    {
+        return clientFinaceMapper.selectClientFinaceData(clientFinace);
+    }
+
+    /**
      * 新增客户财务
      * 
      * @param clientFinace 客户财务

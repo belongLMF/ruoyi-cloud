@@ -28,6 +28,14 @@ public interface IClientFinaceService
     public List<ClientFinace> selectClientFinaceList(ClientFinace clientFinace);
 
     /**
+     * 查询客户财务单条
+     *
+     * @param clientFinace
+     * @return
+     */
+    public List<ClientFinace> selectClientFinaceData(ClientFinace clientFinace);
+
+    /**
      * 新增客户财务
      * 
      * @param clientFinace 客户财务
