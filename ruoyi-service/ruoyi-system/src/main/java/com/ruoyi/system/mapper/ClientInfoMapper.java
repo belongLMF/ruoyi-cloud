@@ -20,6 +20,14 @@ public interface ClientInfoMapper
     public ClientInfo selectClientInfoById(Long id);
 
     /**
+     * 根据客户id查询客户基本信息
+     *
+     * @param cid 客户基本信息ID
+     * @return 客户基本信息
+     */
+    public ClientInfo selectClientInfoByCid(Long cid);
+
+    /**
      * 查询客户基本信息列表
      * 
      * @param clientInfo 客户基本信息

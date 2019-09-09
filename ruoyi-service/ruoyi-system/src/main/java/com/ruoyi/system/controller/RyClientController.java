@@ -225,9 +225,14 @@ public class RyClientController extends BaseController {
      * 查询客户基本信息+紧急联系人
      */
     @PostMapping("getInfo")
-    public ClientInfo getInfo(ClientInfo clientInfo) {
+    public ClientInfo getInfo(@RequestBody ClientInfo clientInfo) {
         Long cid = clientInfo.getCid();
-        return ClientInfoService.selectClientInfoById(cid);
+        return ClientInfoService.selectClientInfoByCid(cid);
+    }
+
+    @GetMapping("getInfo2/{cid}")
+    public ClientInfo getInfo2(@PathVariable("cid") Long cid) {
+        return ClientInfoService.selectClientInfoByCid(cid);
     }
 
     /**
@@ -243,7 +248,7 @@ public class RyClientController extends BaseController {
      * 查询客户工作信息
      */
     @PostMapping("getJobInfo")
-    public ClientJobInfo getJobInfo(ClientJobInfo clientJobInfo) {
+    public ClientJobInfo getJobInfo(@RequestBody ClientJobInfo clientJobInfo) {
         Long cid = clientJobInfo.getCid();
         return ClientJobInfoService.selectClientJobInfoById(cid);
     }

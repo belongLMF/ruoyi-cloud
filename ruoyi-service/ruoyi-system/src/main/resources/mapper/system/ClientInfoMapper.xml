@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectClientInfoVo">
-        select id, cid, marriage, education, nation, career_type, family_size, residential_type, home_phone, qq, wechat, email, native_place, native_place_code, address, address_code, describe, emergency_contact, emergency_contact_phone, emergency_contact_address, create_time, update_time, delete_time from client_info
+        select id, cid, marriage, education, nation, career_type, family_size, residential_type, home_phone, qq, wechat, email, native_place, native_place_code, address, address_code, `describe`, emergency_contact, emergency_contact_phone, emergency_contact_address, create_time, update_time, delete_time from client_info
     </sql>
 
     <select id="selectClientInfoList" parameterType="ClientInfo" resultMap="ClientInfoResult">
@@ -43,6 +43,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectClientInfoById" parameterType="Long" resultMap="ClientInfoResult">
         <include refid="selectClientInfoVo"/>
         where id = #{id}
+    </select>
+
+    <select id="selectClientInfoByCid" parameterType="Long" resultMap="ClientInfoResult">
+        <include refid="selectClientInfoVo"/>
+        where cid = #{cid}
     </select>
         
     <insert id="insertClientInfo" parameterType="ClientInfo">

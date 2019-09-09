@@ -34,6 +34,21 @@ public class ClientInfoServiceImpl implements IClientInfoService
     }
 
     /**
+     * 查询客户基本信息
+     *
+     * @param cid 客户基本信息ID
+     * @return 客户基本信息
+     */
+    @Override
+    public ClientInfo selectClientInfoByCid(Long cid)
+    {
+        System.out.println("测试");
+        System.out.println(cid);
+        System.out.println("测试end");
+        return clientInfoMapper.selectClientInfoByCid(cid);
+    }
+
+    /**
      * 查询客户基本信息列表
      * 
      * @param clientInfo 客户基本信息
