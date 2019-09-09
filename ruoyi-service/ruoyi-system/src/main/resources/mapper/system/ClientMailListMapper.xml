@@ -14,13 +14,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="contactLocation"    column="contact_location"    />
         <result property="contactAddress"    column="contact_address"    />
         <result property="addType"    column="add_type"    />
+        <result property="status"    column="status"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateTime"    column="update_time"    />
         <result property="deleteTime"    column="delete_time"    />
     </resultMap>
 
     <sql id="selectClientMailListVo">
-        select id, cid, apply_code, contact_name, contact_relation, contact_phone, contact_location, contact_address, add_type, create_time, update_time, delete_time from client_mail_list
+        select id, cid, apply_code, contact_name, contact_relation, contact_phone, contact_location, contact_address, add_type, status, create_time, update_time, delete_time from client_mail_list
     </sql>
 
     <select id="selectClientMailListList" parameterType="ClientMailList" resultMap="ClientMailListResult">

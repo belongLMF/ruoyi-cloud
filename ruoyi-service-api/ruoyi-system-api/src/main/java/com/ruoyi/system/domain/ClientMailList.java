@@ -51,6 +51,10 @@ public class ClientMailList extends BaseEntity
     @Excel(name = "添加类型：1app添加 2客户手动添加3后台添加")
     private Integer addType;
 
+    /** 状态：1正常  0无效 */
+    @Excel(name = "状态")
+    private Integer status;
+
     /** $column.columnComment */
     @Excel(name = "添加类型：1app添加 2客户手动添加3后台添加", width = 30, dateFormat = "yyyy-MM-dd")
     private Date deleteTime;
@@ -145,6 +149,16 @@ public class ClientMailList extends BaseEntity
     {
         return deleteTime;
     }
+    public void setStatus(Integer status)
+    {
+        this.status = status;
+    }
+
+    public Integer getStatus()
+    {
+        return status;
+    }
+
 
     @Override
     public String toString() {
@@ -158,6 +172,7 @@ public class ClientMailList extends BaseEntity
             .append("contactLocation", getContactLocation())
             .append("contactAddress", getContactAddress())
             .append("addType", getAddType())
+            .append("status", getStatus())
             .append("createTime", getCreateTime())
             .append("updateTime", getUpdateTime())
             .append("deleteTime", getDeleteTime())
