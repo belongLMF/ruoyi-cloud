@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ClientJobInfoMapper">
+    
+    <resultMap type="ClientJobInfo" id="ClientJobInfoResult">
+        <result property="id"    column="id"    />
+        <result property="cid"    column="cid"    />
+        <result property="corporateName"    column="corporate_name"    />
+        <result property="corporateAttr"    column="corporate_attr"    />
+        <result property="corporateIndustry"    column="corporate_industry"    />
+        <result property="corporateAddress"    column="corporate_address"    />
+        <result property="corporateDepartment"    column="corporate_department"    />
+        <result property="corporatePost"    column="corporate_post"    />
+        <result property="fundInfo"    column="fund_info"    />
+        <result property="socialSecurity"    column="social_security"    />
+        <result property="entryTime"    column="entry_time"    />
+        <result property="corporatePhone"    column="corporate_phone"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="deleteTime"    column="delete_time"    />
+    </resultMap>
+
+    <sql id="selectClientJobInfoVo">
+        select id, cid, corporate_name, corporate_attr, corporate_industry, corporate_address, corporate_department, corporate_post, fund_info, social_security, entry_time, corporate_phone, create_time, update_time, delete_time from client_job_info
+    </sql>
+
+    <select id="selectClientJobInfoList" parameterType="ClientJobInfo" resultMap="ClientJobInfoResult">
+        <include refid="selectClientJobInfoVo"/>
+        <where>  
+            <if test="corporateName != null  and corporateName != ''"> and corporate_name like concat('%', #{corporateName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectClientJobInfoById" parameterType="Long" resultMap="ClientJobInfoResult">
+        <include refid="selectClientJobInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertClientJobInfo" parameterType="ClientJobInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into client_job_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">cid,</if>
+            <if test="corporateName != null  and corporateName != ''">corporate_name,</if>
+            <if test="corporateAttr != null ">corporate_attr,</if>
+            <if test="corporateIndustry != null ">corporate_industry,</if>
+            <if test="corporateAddress != null  and corporateAddress != ''">corporate_address,</if>
+            <if test="corporateDepartment != null  and corporateDepartment != ''">corporate_department,</if>
+            <if test="corporatePost != null  and corporatePost != ''">corporate_post,</if>
+            <if test="fundInfo != null  and fundInfo != ''">fund_info,</if>
+            <if test="socialSecurity != null  and socialSecurity != ''">social_security,</if>
+            <if test="entryTime != null ">entry_time,</if>
+            <if test="corporatePhone != null  and corporatePhone != ''">corporate_phone,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="deleteTime != null ">delete_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cid != null ">#{cid},</if>
+            <if test="corporateName != null  and corporateName != ''">#{corporateName},</if>
+            <if test="corporateAttr != null ">#{corporateAttr},</if>
+            <if test="corporateIndustry != null ">#{corporateIndustry},</if>
+            <if test="corporateAddress != null  and corporateAddress != ''">#{corporateAddress},</if>
+            <if test="corporateDepartment != null  and corporateDepartment != ''">#{corporateDepartment},</if>
+            <if test="corporatePost != null  and corporatePost != ''">#{corporatePost},</if>
+            <if test="fundInfo != null  and fundInfo != ''">#{fundInfo},</if>
+            <if test="socialSecurity != null  and socialSecurity != ''">#{socialSecurity},</if>
+            <if test="entryTime != null ">#{entryTime},</if>
+            <if test="corporatePhone != null  and corporatePhone != ''">#{corporatePhone},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="deleteTime != null ">#{deleteTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClientJobInfo" parameterType="ClientJobInfo">
+        update client_job_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cid != null ">cid = #{cid},</if>
+            <if test="corporateName != null  and corporateName != ''">corporate_name = #{corporateName},</if>
+            <if test="corporateAttr != null ">corporate_attr = #{corporateAttr},</if>
+            <if test="corporateIndustry != null ">corporate_industry = #{corporateIndustry},</if>
+            <if test="corporateAddress != null  and corporateAddress != ''">corporate_address = #{corporateAddress},</if>
+            <if test="corporateDepartment != null  and corporateDepartment != ''">corporate_department = #{corporateDepartment},</if>
+            <if test="corporatePost != null  and corporatePost != ''">corporate_post = #{corporatePost},</if>
+            <if test="fundInfo != null  and fundInfo != ''">fund_info = #{fundInfo},</if>
+            <if test="socialSecurity != null  and socialSecurity != ''">social_security = #{socialSecurity},</if>
+            <if test="entryTime != null ">entry_time = #{entryTime},</if>
+            <if test="corporatePhone != null  and corporatePhone != ''">corporate_phone = #{corporatePhone},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="deleteTime != null ">delete_time = #{deleteTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClientJobInfoById" parameterType="Long">
+        delete from client_job_info where id = #{id}
+    </delete>
+
+    <delete id="deleteClientJobInfoByIds" parameterType="String">
+        delete from client_job_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

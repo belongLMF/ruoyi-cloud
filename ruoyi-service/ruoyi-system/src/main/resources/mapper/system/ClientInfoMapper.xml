@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ClientInfoMapper">
+    
+    <resultMap type="ClientInfo" id="ClientInfoResult">
+        <result property="id"    column="id"    />
+        <result property="cid"    column="cid"    />
+        <result property="marriage"    column="marriage"    />
+        <result property="education"    column="education"    />
+        <result property="nation"    column="nation"    />
+        <result property="careerType"    column="career_type"    />
+        <result property="familySize"    column="family_size"    />
+        <result property="residentialType"    column="residential_type"    />
+        <result property="homePhone"    column="home_phone"    />
+        <result property="qq"    column="qq"    />
+        <result property="wechat"    column="wechat"    />
+        <result property="email"    column="email"    />
+        <result property="nativePlace"    column="native_place"    />
+        <result property="nativePlaceCode"    column="native_place_code"    />
+        <result property="address"    column="address"    />
+        <result property="addressCode"    column="address_code"    />
+        <result property="describe"    column="describe"    />
+        <result property="emergencyContact"    column="emergency_contact"    />
+        <result property="emergencyContactPhone"    column="emergency_contact_phone"    />
+        <result property="emergencyContactAddress"    column="emergency_contact_address"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="deleteTime"    column="delete_time"    />
+    </resultMap>
+
+    <sql id="selectClientInfoVo">
+        select id, cid, marriage, education, nation, career_type, family_size, residential_type, home_phone, qq, wechat, email, native_place, native_place_code, address, address_code, describe, emergency_contact, emergency_contact_phone, emergency_contact_address, create_time, update_time, delete_time from client_info
+    </sql>
+
+    <select id="selectClientInfoList" parameterType="ClientInfo" resultMap="ClientInfoResult">
+        <include refid="selectClientInfoVo"/>
+        <where>  
+        </where>
+    </select>
+    
+    <select id="selectClientInfoById" parameterType="Long" resultMap="ClientInfoResult">
+        <include refid="selectClientInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertClientInfo" parameterType="ClientInfo">
+        insert into client_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="cid != null ">cid,</if>
+            <if test="marriage != null ">marriage,</if>
+            <if test="education != null ">education,</if>
+            <if test="nation != null  and nation != ''">nation,</if>
+            <if test="careerType != null ">career_type,</if>
+            <if test="familySize != null ">family_size,</if>
+            <if test="residentialType != null ">residential_type,</if>
+            <if test="homePhone != null  and homePhone != ''">home_phone,</if>
+            <if test="qq != null  and qq != ''">qq,</if>
+            <if test="wechat != null  and wechat != ''">wechat,</if>
+            <if test="email != null  and email != ''">email,</if>
+            <if test="nativePlace != null  and nativePlace != ''">native_place,</if>
+            <if test="nativePlaceCode != null  and nativePlaceCode != ''">native_place_code,</if>
+            <if test="address != null  and address != ''">address,</if>
+            <if test="addressCode != null  and addressCode != ''">address_code,</if>
+            <if test="describe != null  and describe != ''">describe,</if>
+            <if test="emergencyContact != null  and emergencyContact != ''">emergency_contact,</if>
+            <if test="emergencyContactPhone != null  and emergencyContactPhone != ''">emergency_contact_phone,</if>
+            <if test="emergencyContactAddress != null  and emergencyContactAddress != ''">emergency_contact_address,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="deleteTime != null ">delete_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="cid != null ">#{cid},</if>
+            <if test="marriage != null ">#{marriage},</if>
+            <if test="education != null ">#{education},</if>
+            <if test="nation != null  and nation != ''">#{nation},</if>
+            <if test="careerType != null ">#{careerType},</if>
+            <if test="familySize != null ">#{familySize},</if>
+            <if test="residentialType != null ">#{residentialType},</if>
+            <if test="homePhone != null  and homePhone != ''">#{homePhone},</if>
+            <if test="qq != null  and qq != ''">#{qq},</if>
+            <if test="wechat != null  and wechat != ''">#{wechat},</if>
+            <if test="email != null  and email != ''">#{email},</if>
+            <if test="nativePlace != null  and nativePlace != ''">#{nativePlace},</if>
+            <if test="nativePlaceCode != null  and nativePlaceCode != ''">#{nativePlaceCode},</if>
+            <if test="address != null  and address != ''">#{address},</if>
+            <if test="addressCode != null  and addressCode != ''">#{addressCode},</if>
+            <if test="describe != null  and describe != ''">#{describe},</if>
+            <if test="emergencyContact != null  and emergencyContact != ''">#{emergencyContact},</if>
+            <if test="emergencyContactPhone != null  and emergencyContactPhone != ''">#{emergencyContactPhone},</if>
+            <if test="emergencyContactAddress != null  and emergencyContactAddress != ''">#{emergencyContactAddress},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="deleteTime != null ">#{deleteTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClientInfo" parameterType="ClientInfo">
+        update client_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cid != null ">cid = #{cid},</if>
+            <if test="marriage != null ">marriage = #{marriage},</if>
+            <if test="education != null ">education = #{education},</if>
+            <if test="nation != null  and nation != ''">nation = #{nation},</if>
+            <if test="careerType != null ">career_type = #{careerType},</if>
+            <if test="familySize != null ">family_size = #{familySize},</if>
+            <if test="residentialType != null ">residential_type = #{residentialType},</if>
+            <if test="homePhone != null  and homePhone != ''">home_phone = #{homePhone},</if>
+            <if test="qq != null  and qq != ''">qq = #{qq},</if>
+            <if test="wechat != null  and wechat != ''">wechat = #{wechat},</if>
+            <if test="email != null  and email != ''">email = #{email},</if>
+            <if test="nativePlace != null  and nativePlace != ''">native_place = #{nativePlace},</if>
+            <if test="nativePlaceCode != null  and nativePlaceCode != ''">native_place_code = #{nativePlaceCode},</if>
+            <if test="address != null  and address != ''">address = #{address},</if>
+            <if test="addressCode != null  and addressCode != ''">address_code = #{addressCode},</if>
+            <if test="describe != null  and describe != ''">describe = #{describe},</if>
+            <if test="emergencyContact != null  and emergencyContact != ''">emergency_contact = #{emergencyContact},</if>
+            <if test="emergencyContactPhone != null  and emergencyContactPhone != ''">emergency_contact_phone = #{emergencyContactPhone},</if>
+            <if test="emergencyContactAddress != null  and emergencyContactAddress != ''">emergency_contact_address = #{emergencyContactAddress},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="deleteTime != null ">delete_time = #{deleteTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClientInfoById" parameterType="Long">
+        delete from client_info where id = #{id}
+    </delete>
+
+    <delete id="deleteClientInfoByIds" parameterType="String">
+        delete from client_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

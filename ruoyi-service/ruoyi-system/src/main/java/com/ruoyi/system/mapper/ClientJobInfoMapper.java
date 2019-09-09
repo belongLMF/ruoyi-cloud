@@ -1,0 +1,61 @@
+package com.ruoyi.system.mapper;
+
+import com.ruoyi.system.domain.ClientJobInfo;
+import java.util.List;
+
+/**
+ * 客户工作信息Mapper接口
+ * 
+ * @author ruoyi
+ * @date 2019-09-09
+ */
+public interface ClientJobInfoMapper 
+{
+    /**
+     * 查询客户工作信息
+     * 
+     * @param id 客户工作信息ID
+     * @return 客户工作信息
+     */
+    public ClientJobInfo selectClientJobInfoById(Long id);
+
+    /**
+     * 查询客户工作信息列表
+     * 
+     * @param clientJobInfo 客户工作信息
+     * @return 客户工作信息集合
+     */
+    public List<ClientJobInfo> selectClientJobInfoList(ClientJobInfo clientJobInfo);
+
+    /**
+     * 新增客户工作信息
+     * 
+     * @param clientJobInfo 客户工作信息
+     * @return 结果
+     */
+    public int insertClientJobInfo(ClientJobInfo clientJobInfo);
+
+    /**
+     * 修改客户工作信息
+     * 
+     * @param clientJobInfo 客户工作信息
+     * @return 结果
+     */
+    public int updateClientJobInfo(ClientJobInfo clientJobInfo);
+
+    /**
+     * 删除客户工作信息
+     * 
+     * @param id 客户工作信息ID
+     * @return 结果
+     */
+    public int deleteClientJobInfoById(Long id);
+
+    /**
+     * 批量删除客户工作信息
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    public int deleteClientJobInfoByIds(String[] ids);
+}
