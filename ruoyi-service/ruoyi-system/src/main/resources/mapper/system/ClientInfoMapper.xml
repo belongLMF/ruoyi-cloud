@@ -48,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectClientInfoByCid" parameterType="Long" resultMap="ClientInfoResult">
         <include refid="selectClientInfoVo"/>
         where cid = #{cid}
+        order by id desc limit 1
     </select>
         
     <insert id="insertClientInfo" parameterType="ClientInfo">
