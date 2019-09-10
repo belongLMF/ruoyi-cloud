@@ -1,7 +1,9 @@
 package com.ruoyi.system.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.ruoyi.common.core.domain.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,12 +121,17 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     public R typeList(String dictType) {
         String[] dictTypeArray = Convert.toStrArray(dictType);
 
-        HashMap data = new HashMap();
+        List<Map> list = new ArrayList<>();
 
         for (String val : dictTypeArray) {
-            data.put(val, dictDataMapper.selectDictDataByType(val));
+
+            HashMap data = new HashMap();
+            data.put("name", val);
+            data.put("value", dictDataMapper.selectDictDataByType(val));
+
+            list.add(data);
         }
 
-        return R.data(data);
+        return R.data(list);
     }
 }

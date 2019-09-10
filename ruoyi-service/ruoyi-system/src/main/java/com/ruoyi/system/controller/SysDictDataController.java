@@ -114,4 +114,9 @@ public class SysDictDataController extends BaseController {
     public R typeList(String dictType) {
         return sysDictDataService.typeList(dictType);
     }
+
+    @GetMapping("typeList2")
+    public R typeList2(String dictType) {
+        return sysDictDataService.typeList(dictType);
+    }
 }
